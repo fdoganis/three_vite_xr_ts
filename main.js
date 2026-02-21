@@ -4,7 +4,7 @@
 // Any changes made here will be overwritten.
 // Import only what you need, to help your bundler optimize final code size using tree shaking
 // see https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)
-import { AmbientLight, Clock, CylinderGeometry, HemisphereLight, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import { AmbientLight, Timer, CylinderGeometry, HemisphereLight, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 // XR
 import { XRButton } from 'three/addons/webxr/XRButton.js';
 // If you prefer to import the whole library, with the THREE prefix, use the following line instead:
@@ -29,11 +29,13 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 // const MODEL_PATH = 'https://raw.githubusercontent.com/mrdoob/three.js/r173/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb';
 // INSERT CODE HERE
 let camera, scene, renderer;
-const clock = new Clock();
+const timer = new Timer();
+timer.connect(document);
 // Main loop
 const animate = () => {
-    const delta = clock.getDelta();
-    const elapsed = clock.getElapsedTime();
+    timer.update();
+    const delta = timer.getDelta();
+    const elapsed = timer.getElapsed();
     // can be used in shaders: uniforms.u_time.value = elapsed;
     renderer.render(scene, camera);
 };
