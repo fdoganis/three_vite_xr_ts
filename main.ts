@@ -10,7 +10,7 @@
 import {
   AmbientLight,
   BoxGeometry,
-  Clock,
+  Timer,
   Color,
   CylinderGeometry,
   HemisphereLight,
@@ -67,13 +67,15 @@ import { XRController } from 'iwer/lib/device/XRController';
 let camera : PerspectiveCamera, scene : Scene, renderer : WebGLRenderer;
 
 
-const clock = new Clock();
+const timer = new Timer();
+timer.connect(document);
 
 // Main loop
 const animate = () => {
 
-  const delta = clock.getDelta();
-  const elapsed = clock.getElapsedTime();
+  timer.update();
+  const delta = timer.getDelta();
+  const elapsed = timer.getElapsed();
 
   // can be used in shaders: uniforms.u_time.value = elapsed;
 
