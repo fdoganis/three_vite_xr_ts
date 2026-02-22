@@ -26,5 +26,8 @@ dist-ssr
 *.sln
 *.sw?
 
+*.map
+
 # Local Netlify folder
 .netlify
+
